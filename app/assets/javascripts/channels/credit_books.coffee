@@ -6,7 +6,13 @@ App.credit_books = App.cable.subscriptions.create "CreditBooksChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    window.credit_records.push data.credit_book
+    book = data.credit_book
+    if book.provider == currentUser
+      book.owner = true
+    else
+      book.owner = false
+    book.orderstate = 0
+    window.credit_records.push book
     # Called when there's incoming data on the websocket for this channel
 
   create: (credit_book)->
