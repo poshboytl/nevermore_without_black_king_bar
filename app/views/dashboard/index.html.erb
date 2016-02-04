@@ -5,6 +5,11 @@
   <link href='http://fonts.useso.com/css?family=Lato:400,100' rel='stylesheet' type='text/css'>
 </head>
 <body ng-app="Nevermore">
+  <script>
+    window.currentUser = "<%= j @current_user %>"
+    window.credit_records = <%= raw @credit_books.to_json(current_user: @current_user) %>
+
+  </script>
   <header class="navbar">
     <img class="logo shake" src="./images/N.svg" alt="">
 

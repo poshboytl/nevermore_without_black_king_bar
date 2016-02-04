@@ -26,9 +26,8 @@
 window.app = angular.module('Nevermore', ['neverMoreFilters']);
 
 angular.element(document).ready(function() {
-  window.credit_book = []
-  window.order_book = []
-  window.currentUser = 'me'
+  // window.order_book = []
+  // window.currentUser = 'me'
 
   // Bootstrap Angualr module
   angular.bootstrap(document, ['Nevermore']);
