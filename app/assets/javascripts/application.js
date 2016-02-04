@@ -20,15 +20,15 @@
 //= require lib/modal
 //= require lib/Chart.min
 //= require lib/toastr.min
+//= require_self
 //= require_tree .
 
 window.app = angular.module('Nevermore', ['neverMoreFilters']);
 
 angular.element(document).ready(function() {
-  // window.credit_book = CreditBook.deployed();
-  // window.order_book = OrderBook.deployed();
-  // window.currentUser = localStorage.getItem("currentUser") || web3.eth.accounts[0];
-  // order_book.setCreditBook(CreditBook.deployed_address, {from: currentUser});
+  window.credit_book = []
+  window.order_book = []
+  window.currentUser = 'me'
 
   // Bootstrap Angualr module
   angular.bootstrap(document, ['Nevermore']);
