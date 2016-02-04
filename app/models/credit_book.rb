@@ -3,6 +3,8 @@ class CreditBook < ApplicationRecord
   enum state: { applying: 0, in_progress: 1, done: 2 }
   has_many :requests
 
+  validates :commit, uniqueness: { case_sensitive: false }
+
   before_create :generate_commit, :set_unixtime
 
   def as_json(options = {})
@@ -31,7 +33,7 @@ class CreditBook < ApplicationRecord
   private
 
   def generate_commit
-    self.commit = "0x#{SecureRandom.hex(32)}"
+    self.commit = "0x#{SecureRandom.hex(32)}" unless self.commit
   end
 
   def set_unixtime

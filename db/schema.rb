@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20160203142701) do
 
-  create_table "credit_books", force: :cascade do |t|
+  create_table "credit_books", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "commit"
     t.string   "identity"
     t.integer  "category"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20160203142701) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "requests", force: :cascade do |t|
+  create_table "requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "credit_book_id"
     t.integer  "state"
     t.string   "sender"

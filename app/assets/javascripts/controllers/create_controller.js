@@ -6,8 +6,8 @@ app.controller('CreateCtrl', ['$scope', function ($scope) {
 
   function makeHash(creditRecord) {
     // TODO: make a better rule for generate hash
-    var msg = "" + creditRecord.identity + (new Date()).toString()
-    return '0x' + web3.sha3(msg, {encoding: "hex"});
+    var msg = "" + creditRecord.identity + (new Date()).toString();
+    return '0x' + SHA256(msg);
   }
 
   $scope.categoryOptions = [
@@ -48,19 +48,17 @@ app.controller('CreateCtrl', ['$scope', function ($scope) {
 
     // TODO: reset form after create
 
-    credit_book.submit(
-      encodeToBytes32(data.identity),
-      data.category,
-      data.state,
-      data.fee,
-      data.timestamp,
-      data.commit,
-      {from: currentUser}
-    ).catch(function(e) {
-      console.log(e)
-    });
 
-    // close upload modal
+    var credit_book = {
+      identity: data.identity,
+      category: data.category,
+      state: data.state,
+      fee: data.fee,
+      commit: data.commit,
+      provider: currentUser
+    };
+
+    App.credit_books.create(credit_book);
     $('#upload-modal').modal('hide');
   }
 

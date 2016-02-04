@@ -15,7 +15,7 @@
 //= require lib/jquery-tiny-pubsub
 //= require lib/sha256
 //= require lib/handlebars
-//= require lib/angular.min
+//= require lib/angular
 //= require lib/transition
 //= require lib/modal
 //= require lib/Chart.min

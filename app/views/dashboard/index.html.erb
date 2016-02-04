@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Default Truffle App</title>
-  <link href='http://fonts.useso.com/css?family=Lato:400,100' rel='stylesheet' type='text/css'>
-</head>
-<body ng-app="Nevermore">
+<div ng-app="Nevermore">
   <script>
     window.currentUser = "<%= j @current_user %>"
     window.credit_records = <%= raw @credit_books.to_json(current_user: @current_user) %>
@@ -176,7 +170,7 @@
           <textarea class="form-control" name="name" rows="8" cols="40" ng-model="creditRecord.desc"></textarea>
         </div>
 
-        <button class="btn btn-primary-outline confirm" ng-click="createCreditRecord()">Submit</button>
+        <button class="btn btn-primary-outline confirm" ng-click="createCreditRecord();">Submit</button>
       </div>
     </div>
   </section>
@@ -309,6 +303,4 @@
   </script>
 
   <div class="mask"></div>
-</body>
-</html>
-
+</div>
