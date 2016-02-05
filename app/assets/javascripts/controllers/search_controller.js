@@ -72,7 +72,8 @@ app.controller('SearchCtrl', ['$scope', function ($scope) {
       list.push({commit: item.commit, fee: item.fee});
     }
 
-    $.publish('CreditRecord:buy', {list: list});
+    // $.publish('CreditRecord:buy', {list: list});
+    App.requests.request(list, currentUser)
 
     $('#purchase-modal').modal('hide');
 

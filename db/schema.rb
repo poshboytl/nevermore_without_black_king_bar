@@ -23,12 +23,14 @@ ActiveRecord::Schema.define(version: 20160203142701) do
     t.string   "provider"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["commit"], name: "index_credit_books_on_commit", unique: true, using: :btree
   end
 
   create_table "requests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "credit_book_id"
     t.integer  "state"
     t.string   "sender"
+    t.integer  "fee"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end

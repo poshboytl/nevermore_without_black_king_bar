@@ -3,7 +3,8 @@ class CreditBook < ApplicationRecord
   enum state: { applying: 0, in_progress: 1, done: 2 }
   has_many :requests
 
-  validates :commit, uniqueness: { case_sensitive: false }
+  validates :commit, uniqueness: { scope: :fee}
+
 
   before_create :generate_commit, :set_unixtime
 

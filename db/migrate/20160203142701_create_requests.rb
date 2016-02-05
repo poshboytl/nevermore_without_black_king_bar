@@ -4,6 +4,7 @@ class CreateRequests < ActiveRecord::Migration[5.0]
       t.integer :credit_book_id
       t.integer :state
       t.string :sender
+      t.integer :fee
 
       t.timestamps
     end

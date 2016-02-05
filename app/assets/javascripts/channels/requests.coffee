@@ -6,7 +6,15 @@ App.requests = App.cable.subscriptions.create "RequestsChannel",
     # Called when the subscription has been terminated by the server
 
   received: (data) ->
-    # Called when there's incoming data on the websocket for this channel
+    if currentUser == data.provider
+      for index, ele of credit_records
+        if ele.commit == data.commit
+          ele.orderstate = 1
+          toastr.info('You received a request')
+    if currentUser == data.buyer
+      toastr.info('Request send successfully')
 
-  request: (req)->
-    @perform 'request', req: req
+
+
+  request: (list, currentUser)->
+    @perform 'request', list: list, current_user: currentUser
