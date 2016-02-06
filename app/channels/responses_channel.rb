@@ -9,9 +9,18 @@ class ResponsesChannel < ApplicationCable::Channel
   end
 
   def response(data)
-    response = data['response']
+    raw_response = data['response']
     provider = data['provider']
     buyer = data['buyer']
-    ActionCable.server.broadcast 'responses_channel', data: response, provider: provider, buyer: buyer
+
+    response = ActiveSupport::JSON.decode raw_response
+    commit = response['commit']
+
+    cb = CreditBook.where(commit: commit).first
+    if cb
+      cb.requests.where(sender: buyer).first.update_attributes(state: :accepted)
+    end
+
+    ActionCable.server.broadcast 'responses_channel', data: raw_response, provider: provider, buyer: buyer
   end
 end

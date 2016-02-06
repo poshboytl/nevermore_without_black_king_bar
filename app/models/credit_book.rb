@@ -42,7 +42,12 @@ class CreditBook < ApplicationRecord
   end
 
   def order_sate(user)
-    requests.where(sender: user).first.try(:state) || 0
+    st = requests.where(sender: user).first.try(:state)
+    if st
+      Request.states[st]
+    else
+      0
+    end
   end
 
 end
